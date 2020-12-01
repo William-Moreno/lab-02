@@ -18,9 +18,9 @@ Open in a web browser
 
 Number and name of feature: #1: Display Images
 
-Estimate of time needed to complete:
+Estimate of time needed to complete: 1 hour
 
-Start time:
+Start time: 2:30pm
 
 Finish time:
 
@@ -28,7 +28,7 @@ Actual time needed to complete:
 
 Number and name of feature: #2: Filter Images
 
-Estimate of time needed to complete:
+Estimate of time needed to complete: 1 hour
 
 Start time:
 
@@ -38,7 +38,7 @@ Actual time needed to complete:
 
 Number and name of feature: #3: Style the Application
 
-Estimate of time needed to complete:
+Estimate of time needed to complete: 45 min
 
 Start time:
 
