@@ -2,9 +2,11 @@ body {
   width: 100%;
 }
 
-.single-image {
-  width: 33%;
-  height: 200px;
+header{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+
 }
 
 h2 {
@@ -12,14 +14,30 @@ h2 {
 }
 
 img {
-  width: 100px;
-  object-fit: cover;
+  width: 33%;
+  object-fit: contain;
+  height: 67%;
+  
+
 }
 
 p {
-  width: 100%;
+  width: 65%;
+  margin: auto;
 }
 
-li {
+.single-image {
   float: left;
+  width: 33%;
+  height: 220px;
+  text-align: center;
+}
+
+.gallery{
+  max-width: 960px;
+}
+
+footer{
+  clear: both;
+  text-align: center;
 }
