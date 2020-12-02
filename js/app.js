@@ -17,7 +17,7 @@ function HornImage(jsonObject){
 // TODO: Define prototype render method
 
 HornImage.prototype.render = function(){
-    const $newImageDiv = $('#photo-template').find('li').clone();
+    const $newImageDiv = $('#photo-template').find('div').clone();
     
     $newImageDiv.find('h2').text(this.title);
     $newImageDiv.find('p').text(this.description);
@@ -66,7 +66,7 @@ $('#drop-down').on('change',function() {
 });
 
 
-//$('#photo-template').hide();
+$('#photo-template').hide();
 
 // populate keywords array
 
