@@ -32,9 +32,9 @@ Estimate of time needed to complete: 1 hour
 
 Start time: 5:15pm
 
-Finish time:
+Finish time: 8:00pm
 
-Actual time needed to complete:
+Actual time needed to complete: 2hrs 45min
 
 Number and name of feature: #3: Style the Application
 
