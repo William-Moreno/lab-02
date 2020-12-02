@@ -24,7 +24,7 @@ HornImage.prototype.render = function () {
     $("#gallery").append($newImageDiv);
 };
 
-$.get("/data/page-1.json").then((imageGallery) => {
+$.ajax({url:"/data/page-1.json"}).then((imageGallery) => {
     imageGallery.forEach(imageJSONObject => hornImages.push(new HornImage(imageJSONObject)));
     hornImages.forEach(image => image.render());
     hornImages.forEach((currentItem) => {
