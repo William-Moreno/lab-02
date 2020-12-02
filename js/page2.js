@@ -24,7 +24,7 @@ HornImage.prototype.render = function () {
     $("#gallery").append($newImageDiv);
 };
 
-$.ajax({url:"./data/page-1.json"}).then((imageGallery) => {
+$.ajax({url:"./data/page-2.json"}).then((imageGallery) => {
     imageGallery.forEach(imageJSONObject => hornImages.push(new HornImage(imageJSONObject)));
     hornImages.forEach(image => image.render());
     hornImages.forEach((currentItem) => {
@@ -42,16 +42,16 @@ $.ajax({url:"./data/page-1.json"}).then((imageGallery) => {
 
 function filterOptions(keywordArray) {
     keywordArray.forEach((keyword) => {
-        const $newFilterOption = $("#keyword-filter").find("#keyword-top").clone();
+        const $newFilterOption = $("#keyword-filter2").find("#keyword-top2").clone();
         $newFilterOption.text(keyword);
         $newFilterOption.attr("value", keyword);
-        $newFilterOption.removeAttr("id", "keyword-top");
+        $newFilterOption.removeAttr("id", "keyword-top2");
 
-        $("#keyword-filter").append($newFilterOption);
+        $("#keyword-filter2").append($newFilterOption);
     });
 }
 
-$("#keyword-filter").on("change", function () {
+$("#keyword-filter2").on("change", function () {
     const $choice = $(this).val();
     $(".all").hide();
     $(`.${$choice}`).show();
