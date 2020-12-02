@@ -17,7 +17,7 @@ function HornImage(jsonObject){
 // TODO: Define prototype render method
 
 HornImage.prototype.render = function(){
-    const $newImageDiv = $('#photo-template').find('div').clone();
+    const $newImageDiv = $('#photo-template').find('ul').clone();
     
     $newImageDiv.find('h2').text(this.title);
     $newImageDiv.find('p').text(this.description);
@@ -28,10 +28,14 @@ HornImage.prototype.render = function(){
 
 
 // TODO: Use AJAX to get JSON file
+$.get('../data/page-1.json', 'json').then(imageGallery => {
+    imageGallery.forEach(imageJSONObject => hornImages.push(new HornImage(imageJSONObject)));
+    hornImages.forEach(image => image.render());
+});
 
-// TODO : Make an image out of each JSON object
+//$('#photo-template').hide();
 
-// TODO: Call and render each image
+
 
 // TODO: Hide the template
 
