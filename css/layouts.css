@@ -1,0 +1,25 @@
+body {
+  width: 100%;
+}
+
+.single-image {
+  width: 33%;
+  height: 200px;
+}
+
+h2 {
+  width: 100%;
+}
+
+img {
+  width: 100px;
+  object-fit: cover;
+}
+
+p {
+  width: 100%;
+}
+
+li {
+  float: left;
+}

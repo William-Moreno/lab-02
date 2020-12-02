@@ -1,7 +1,7 @@
 'use strict';
 
 const hornImages = [];
-
+const keywords = [];
 
 // TODO: Define constructor
 
@@ -22,18 +22,44 @@ HornImage.prototype.render = function(){
     $newImageDiv.find('h2').text(this.title);
     $newImageDiv.find('p').text(this.description);
     $newImageDiv.find('img').attr('src', this.image_url);
+    $newImageDiv.addClass('single-image');
     
-    $('#gallery').append($newImageDiv); 
+    $('#gallery').append($newImageDiv);
 };
+
+// TODO: Define prototype option renderer
+
 
 
 // TODO: Use AJAX to get JSON file
 $.ajax('../data/page-1.json', 'json').then(imageGallery => {
     imageGallery.forEach(imageJSONObject => hornImages.push(new HornImage(imageJSONObject)));
     hornImages.forEach(image => image.render());
+    hornImages.forEach(currentItem => {
+        keywords.unshift(currentItem.keyword);
+        if(keywords.includes(currentItem.keyword, 1)){
+            keywords.shift();
+        }
+    });
+    filterOptions(keywords);
 });
 
+function filterOptions(keywordArray){
+    keywordArray.forEach(keyword => {
+        const $newFilterOption = $('#drop-down').find('#list-top').clone();
+        
+        $newFilterOption.text(keyword);
+        $newFilterOption.attr('value', keyword);
+        $newFilterOption.removeAttr('id', 'list-top');
+        
+        $('#drop-down').append($newFilterOption);
+    });
+}
+
+
 //$('#photo-template').hide();
+
+// populate keywords array
 
 
 
