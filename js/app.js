@@ -42,16 +42,16 @@ $.ajax({url:"./data/page-1.json"}).then((imageGallery) => {
 
 function filterOptions(keywordArray) {
     keywordArray.forEach((keyword) => {
-        const $newFilterOption = $("#drop-down").find("#list-top").clone();
+        const $newFilterOption = $("#keyword-filter").find("#keyword-top").clone();
         $newFilterOption.text(keyword);
         $newFilterOption.attr("value", keyword);
-        $newFilterOption.removeAttr("id", "list-top");
+        $newFilterOption.removeAttr("id", "keyword-top");
 
-        $("#drop-down").append($newFilterOption);
+        $("#keyword-filter").append($newFilterOption);
     });
 }
 
-$("#drop-down").on("change", function () {
+$("#keyword-filter").on("change", function () {
     const $choice = $(this).val();
     $(".all").hide();
     $(`.${$choice}`).show();
