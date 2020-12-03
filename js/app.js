@@ -3,13 +3,15 @@
 const hornImages = [];
 const keywords = [];
 let choice = 'all';
+let pageShown = 1;
 
-function HornImage(jsonObject) {
+function HornImage(jsonObject, page) {
 	this.image_url = jsonObject.image_url;
 	this.title = jsonObject.title;
 	this.description = jsonObject.description;
 	this.keyword = jsonObject.keyword;
 	this.horns = jsonObject.horns;
+	this.page = page;
 }
 
 // HornImage.prototype.render = function () {
@@ -58,9 +60,24 @@ function sortTitles(array) {
 
 $.ajax({ url: './data/page-1.json' }).then((imageGallery) => {
 	imageGallery.forEach((imageJSONObject) =>
-		hornImages.push(new HornImage(imageJSONObject))
+		hornImages.push(new HornImage(imageJSONObject, 'page1'))
 	);
-	sortHorns(hornImages);
+	hornImages.forEach((image) => image.renderWithMustache());
+	hornImages.forEach((currentItem) => {
+		keywords.unshift(currentItem.keyword);
+
+		if (keywords.includes(currentItem.keyword, 1)) {
+			keywords.shift();
+		}
+	});
+
+	filterOptions(keywords);
+});
+
+$.ajax({ url: './data/page-2.json' }).then((imageGallery) => {
+	imageGallery.forEach((imageJSONObject) =>
+		hornImages.push(new HornImage(imageJSONObject, 'page2'))
+	);
 	hornImages.forEach((image) => image.renderWithMustache());
 	hornImages.forEach((currentItem) => {
 		keywords.unshift(currentItem.keyword);
@@ -90,18 +107,25 @@ $('#keyword-filter').on('change', function () {
 	$(`.${choice}`).show();
 });
 
-$('#sort-by').on('change', function () {
-	let sortChoice = $(this).val();
-	if (sortChoice === 'horns') {
-		sortHorns(hornImages);
+// $('#sort-by').on('change', function () {
+// 	let sortChoice = $(this).val();
+// 	if (sortChoice === 'horns') {
+// 		sortHorns(hornImages);
+// 	}
+// 	if (sortChoice === 'title') {
+// 		sortTitles(hornImages);
+// 	}
+// 	$('ul').empty();
+// 	hornImages.forEach((image) => image.renderWithMustache());
+// 	$('.all').hide();
+// 	$(`.${choice}`).show();
+// });
+
+$('button:nth-of-type(1) button:nth-of-type(2)').on('click', (e) => {
+	$('div').hide();
+	if (e.target.textContent === 'Page 1') {
+		pageShown = 1;
 	}
-	if (sortChoice === 'title') {
-		sortTitles(hornImages);
-	}
-	$('ul').empty();
-	hornImages.forEach((image) => image.renderWithMustache());
-	$('.all').hide();
-	$(`.${choice}`).show();
 });
 
 $('#photo-template').hide();
