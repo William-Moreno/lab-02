@@ -84,7 +84,7 @@ Number and name of feature: #3: Sort the Images
 
 Estimate of time needed to complete: 1 hour
 
-Start time:
+Start time: 5:45pm
 
 Finish time:
 
