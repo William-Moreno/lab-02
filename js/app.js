@@ -40,6 +40,10 @@ $.ajax({url:"./data/page-1.json"}).then((imageGallery) => {
     hornImages.forEach((currentItem) => {
         keywords.unshift(currentItem.keyword);
 
+
+
+
+
         if (keywords.includes(currentItem.keyword, 1)) {
             keywords.shift();
         }
@@ -66,5 +70,24 @@ $("#keyword-filter").on("change", function () {
     $(".all").hide();
     $(`.${$choice}`).show();
 });
+
+$("#sort-by").on("change", function () {
+    const $sort = $(this).val();
+    hornImages.sort((a,b) => {
+        if(a.$sort < b.$sort){
+            return -1;
+        }else if(a.$sort > b.$sort){
+            return 1;
+        }else {
+            return 0;
+        }
+
+    })
+
+    console.log(hornImages);
+
+})
+
+
 
 $("#photo-template").hide();
