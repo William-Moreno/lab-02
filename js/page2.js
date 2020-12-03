@@ -2,6 +2,7 @@
 
 const hornImages = [];
 const keywords = [];
+let choice = 'all';
 
 function HornImage(jsonObject) {
     this.image_url = jsonObject.image_url;
@@ -33,6 +34,29 @@ HornImage.prototype.renderWithMustache = function(){
 };
 
 
+function sortHorns(array){
+    array.sort((a, b) => {
+        if(a.horns < b.horns){
+            return -1;
+        } else if(a.horns > b.horns){
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+};
+
+function sortTitles(array){
+    array.sort((a, b) => {
+        if(a.title.toLowerCase() < b.title.toLowerCase()){
+            return -1;
+        } else if(a.title.toLowerCase() > b.title.toLowerCase()){
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+};
 
 $.ajax({url:"./data/page-2.json"}).then((imageGallery) => {
     imageGallery.forEach(imageJSONObject => hornImages.push(new HornImage(imageJSONObject)));
@@ -62,9 +86,24 @@ function filterOptions(keywordArray) {
 }
 
 $("#keyword-filter2").on("change", function () {
-    const $choice = $(this).val();
+    choice = $(this).val();
     $(".all").hide();
-    $(`.${$choice}`).show();
+    $(`.${choice}`).show();
+});
+
+$("#sort-by").on("change", function () {
+    let sortChoice = $(this).val();
+    if(sortChoice === 'horns'){
+        sortHorns(hornImages);
+    }
+    if(sortChoice === 'title'){
+        sortTitles(hornImages);
+    }
+    $('ul').empty();
+    hornImages.forEach(image => image.renderWithMustache());
+    $(".all").hide();
+    $(`.${choice}`).show();
+
 });
 
 $("#photo-template").hide();
