@@ -1,14 +1,40 @@
-.single-image{
-    border: 1px solid blue;
+body {
+  background-color: #301d6930;
 }
-h1{
- font-size: 35px;
- padding: 10px;
- font-family: 'Texturina', serif;
 
+header {
+  background-color: #301d6950;
 }
-h2{
-    font-size: 18px;
-    font-weight: bold;
 
+.single-image {
+  border-radius: 5px;
+  background-color: rgb(241, 241, 241);
+  box-shadow: 2px 2px 4px black;
+}
+h1 {
+  font-size: 35px;
+  padding: 10px;
+  font-family: "Texturina", serif;
+  font-weight: bold;
+  letter-spacing: 0.25rem;
+}
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #301d6980;
+  color: white;
+  padding: 10px;
+}
+
+a {
+  background-color: #301d69;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 6px 8px;
+  letter-spacing: 0.15rem;
+  border-radius: 4px;
 }
