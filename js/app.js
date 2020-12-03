@@ -60,6 +60,7 @@ $.ajax({ url: './data/page-1.json' }).then((imageGallery) => {
 	imageGallery.forEach((imageJSONObject) =>
 		hornImages.push(new HornImage(imageJSONObject))
 	);
+	sortHorns(hornImages);
 	hornImages.forEach((image) => image.renderWithMustache());
 	hornImages.forEach((currentItem) => {
 		keywords.unshift(currentItem.keyword);
