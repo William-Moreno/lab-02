@@ -99,7 +99,6 @@ $('#sort-by').on('change', function () {
 	}
 	$('ul').empty();
 	hornImages.forEach((image) => image.renderWithMustache());
-	console.log(choice);
 	$('.all').hide();
 	$(`.${choice}`).show();
 });
