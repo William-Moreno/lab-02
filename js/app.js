@@ -2,6 +2,7 @@
 
 const hornImages = [];
 const keywords = [];
+let choice = 'all';
 
 function HornImage(jsonObject) {
     this.image_url = jsonObject.image_url;
@@ -32,17 +33,35 @@ HornImage.prototype.renderWithMustache = function(){
 
 };
 
+function sortHorns(array){
+    array.sort((a, b) => {
+        if(a.horns < b.horns){
+            return -1;
+        } else if(a.horns > b.horns){
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+};
 
+function sortTitles(array){
+    array.sort((a, b) => {
+        if(a.title.toLowerCase() < b.title.toLowerCase()){
+            return -1;
+        } else if(a.title.toLowerCase() > b.title.toLowerCase()){
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+};
 
 $.ajax({url:"./data/page-1.json"}).then((imageGallery) => {
     imageGallery.forEach(imageJSONObject => hornImages.push(new HornImage(imageJSONObject)));
     hornImages.forEach(image => image.renderWithMustache());
     hornImages.forEach((currentItem) => {
         keywords.unshift(currentItem.keyword);
-
-
-
-
 
         if (keywords.includes(currentItem.keyword, 1)) {
             keywords.shift();
@@ -66,27 +85,26 @@ function filterOptions(keywordArray) {
 }
 
 $("#keyword-filter").on("change", function () {
-    const $choice = $(this).val();
+    choice = $(this).val();
     $(".all").hide();
-    $(`.${$choice}`).show();
+    $(`.${choice}`).show();
 });
 
 $("#sort-by").on("change", function () {
-    const $sort = $(this).val();
-    hornImages.sort((a,b) => {
-        if(a.$sort < b.$sort){
-            return -1;
-        }else if(a.$sort > b.$sort){
-            return 1;
-        }else {
-            return 0;
-        }
+    let sortChoice = $(this).val();
+    if(sortChoice === 'horns'){
+        sortHorns(hornImages);
+    }
+    if(sortChoice === 'title'){
+        sortTitles(hornImages);
+    }
+    $('ul').empty();
+    hornImages.forEach(image => image.renderWithMustache());
+    console.log(choice);
+    $(".all").hide();
+    $(`.${choice}`).show();
 
-    })
-
-    console.log(hornImages);
-
-})
+});
 
 
 
