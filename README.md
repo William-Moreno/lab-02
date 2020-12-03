@@ -64,11 +64,11 @@ Number and name of feature: #2: Templating
 
 Estimate of time needed to complete: 1.5 hours
 
-Start time:
+Start time: 3:30pm
 
-Finish time:
+Finish time: 4:10pm
 
-Actual time needed to complete:
+Actual time needed to complete: 40 minutes
 
 Number and name of feature: #3: Styling with Flexbox
 
